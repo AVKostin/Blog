@@ -33,7 +33,7 @@
               <div class="block__content">
                 <div class="articles articles__horizontal">
                 <?php
-                    $articles = mysqli_query($connection, "SELECT * FROM `articles` ORDER BY `id` DESC LIMIT 2");
+                    $articles = mysqli_query($connection, "SELECT * FROM `articles` WHERE `categorie_id` = 2 ORDER BY `id` DESC LIMIT 2");
                     // Установили лимит "2-х" "Свежих (DESC)" статей на блок
                     ?>
 
@@ -75,7 +75,7 @@
                 <div class="articles articles__horizontal">
 
                 <?php
-                    $articles = mysqli_query($connection, "SELECT * FROM `articles` ORDER BY `id` DESC LIMIT 3");
+                    $articles = mysqli_query($connection, "SELECT * FROM `articles` WHERE `categorie_id` = 1 ORDER BY `id` DESC LIMIT 3");
                     // Установили лимит "2-х" "Свежих (DESC)" статей на блок
                     ?>
 
@@ -116,7 +116,7 @@
                 <div class="articles articles__horizontal">
 
                 <?php
-                    $articles = mysqli_query($connection, "SELECT * FROM `articles` ORDER BY `id` DESC LIMIT 4");
+                    $articles = mysqli_query($connection, "SELECT * FROM `articles` WHERE `categorie_id` = 5 ORDER BY `id` DESC LIMIT 4");
                     // Установили лимит "2-х" "Свежих (DESC)" статей на блок
                     ?>
 
