@@ -151,9 +151,7 @@
             <section class="content__right col-md-4">
             <?php include "includes/sidebar.php";
             ?>
-
-            <!-- Секция сайдбара  - комментарии-->
-
+  <!-- Секция сайдбара  - комментарии-->
             <?php include "includes/sidebar_comments.php";
             ?>
           </section>
