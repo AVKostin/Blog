@@ -36,7 +36,6 @@
                     $articles = mysqli_query($connection, "SELECT * FROM `articles` WHERE `categorie_id` = 2 ORDER BY `id` DESC LIMIT 2");
                     // Установили лимит "2-х" "Свежих (DESC)" статей на блок
                     ?>
-
                   <?php
                       while( $art = mysqli_fetch_assoc($articles))
                   {
@@ -61,13 +60,10 @@
                         </div>
                         <div class="article__info__preview"><?php echo mb_substr(strip_tags($art['text']),0, 100, 'utf-8'),' ...' ?></div>
                       </div>
-                  </article>
-                    <?php } ?>
-
+                  </article><?php } ?>
                 </div>
               </div>
             </div>
-
             <div class="block">
               <a href="/articles.php">Все записи</a>
               <h3>Безопасность [Новейшее]</h3>
@@ -119,7 +115,6 @@
                     $articles = mysqli_query($connection, "SELECT * FROM `articles` WHERE `categorie_id` = 5 ORDER BY `id` DESC LIMIT 4");
                     // Установили лимит "2-х" "Свежих (DESC)" статей на блок
                     ?>
-
                   <?php
                       while( $art = mysqli_fetch_assoc($articles))
                   {
