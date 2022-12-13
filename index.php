@@ -4,25 +4,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title><?php echo $config['title']; ?>
-  </title>
-
-  <!-- Bootstrap Grid -->
-  <link rel="stylesheet" type="text/css" href="/media/assets/bootstrap-grid-only/css/grid12.css">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
-
-  <!-- Custom -->
-  <link rel="stylesheet" type="text/css" href="/media/css/style.css">
+    <meta charset="UTF-8">
+    <title><?php echo $config['title']; ?></title>
+    <!-- Bootstrap Grid -->
+    <link rel="stylesheet" type="text/css" href="/media/assets/bootstrap-grid-only/css/grid12.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <!-- Custom -->
+    <link rel="stylesheet" type="text/css" href="/media/css/style.css">
 </head>
 <body>
-
   <div id="wrapper">
-
   <?php include "includes/header.php"; ?>
-
     <div id="content">
       <div class="container">
         <div class="row">
@@ -33,10 +26,9 @@
               <div class="block__content">
                 <div class="articles articles__horizontal">
                 <?php
-                    $articles = mysqli_query($connection, "SELECT * FROM `articles` WHERE `categorie_id` = 1 ORDER BY `id` DESC LIMIT 2");
+                    $articles = mysqli_query($connection, "SELECT * FROM `articles` WHERE `categorie_id` = 1 ORDER BY `id` DESC LIMIT 4");
                     // Установили лимит "2-х" "Свежих (DESC)" статей на блок
-                    ?>
-                  <?php
+
                       while( $art = mysqli_fetch_assoc($articles))
                   {
                     ?>
@@ -78,11 +70,11 @@
                 <div class="articles articles__horizontal">
 
                 <?php
-                    $articles = mysqli_query($connection, "SELECT * FROM `articles` WHERE `categorie_id` = 2 ORDER BY `id` DESC LIMIT 3");
+                    $articles = mysqli_query($connection, "SELECT * FROM `articles` WHERE `categorie_id` = 2 ORDER BY `id` DESC LIMIT 2");
                     // Установили лимит "2-х" "Свежих (DESC)" статей на блок
-                    ?>
+                  //   ?>
 
-                  <?php
+                  // <?php
                       while( $art = mysqli_fetch_assoc($articles))
                   {
                     ?>
@@ -120,8 +112,8 @@
                 <?php
                     $articles = mysqli_query($connection, "SELECT * FROM `articles` WHERE `categorie_id` = 5 ORDER BY `id` DESC LIMIT 4");
                     // Установили лимит "2-х" "Свежих (DESC)" статей на блок
-                    ?>
-                  <?php
+                  //   ?>
+                  // <?php
                       while( $art = mysqli_fetch_assoc($articles))
                   {
                     ?>
@@ -154,7 +146,7 @@
               </div>
             </div>
           </section>
-            <!-- Секция сайдбара - топ новостей -->
+  <!-- Секция сайдбара - топ новостей -->
             <section class="content__right col-md-4">
             <?php include "includes/sidebar.php";
             ?>
@@ -165,7 +157,7 @@
         </div>
       </div>
     </div>
-         <?php include "includes/footer.php";?>
+        <?php include "includes/footer.php";?>
   </div>
 </body>
 </html>
