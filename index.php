@@ -28,12 +28,12 @@
         <div class="row">
           <section class="content__left col-md-8">
             <div class="block">
-              <a href="/articles.php">Все записи</a>
-              <h3>Новейшее_в_блоге</h3>
+              <a href="/articles.php?categorie=1">Все записи</a>
+              <h3>Последние новости</h3>
               <div class="block__content">
                 <div class="articles articles__horizontal">
                 <?php
-                    $articles = mysqli_query($connection, "SELECT * FROM `articles` WHERE `categorie_id` = 2 ORDER BY `id` DESC LIMIT 2");
+                    $articles = mysqli_query($connection, "SELECT * FROM `articles` WHERE `categorie_id` = 1 ORDER BY `id` DESC LIMIT 2");
                     // Установили лимит "2-х" "Свежих (DESC)" статей на блок
                     ?>
 
@@ -42,7 +42,7 @@
                   {
                     ?>
                   <article class="article">
-                      <div class="article__image" style="background-image: url(/media/images/post-image.jpg);">
+                      <div class="article__image" style="background-image: url(/media/images/<?php echo $art['image']?>);">
                       </div>
                       <div class="article__info">
                         <a href="/article.php?id=<?php echo $art['id'] ?>"><?php echo $art['title']?></a>
@@ -69,13 +69,13 @@
             </div>
 
             <div class="block">
-              <a href="/articles.php">Все записи</a>
-              <h3>Безопасность [Новейшее]</h3>
+              <a href="/articles.php?categorie=2">Все записи</a>
+              <h3>Гаджеты, Техника [Новейшее]</h3>
               <div class="block__content">
                 <div class="articles articles__horizontal">
 
                 <?php
-                    $articles = mysqli_query($connection, "SELECT * FROM `articles` WHERE `categorie_id` = 1 ORDER BY `id` DESC LIMIT 3");
+                    $articles = mysqli_query($connection, "SELECT * FROM `articles` WHERE `categorie_id` = 2 ORDER BY `id` DESC LIMIT 3");
                     // Установили лимит "2-х" "Свежих (DESC)" статей на блок
                     ?>
 
@@ -84,7 +84,7 @@
                   {
                     ?>
                   <article class="article">
-                      <div class="article__image" style="background-image: url(/media/images/post-image.jpg);">
+                  <div class="article__image" style="background-image: url(/media/images/<?php echo $art['image']?>);">
                       </div>
                       <div class="article__info">
                         <a href="/article.php?id=<?php echo $art['id'] ?>"><?php echo $art['title']?></a>
@@ -110,7 +110,7 @@
             </div>
 
             <div class="block">
-              <a href="/articles.php">Все записи</a>
+              <a href="/articles.php?categorie=5">Все записи</a>
               <h3>Программирование [Новейшее]</h3>
               <div class="block__content">
                 <div class="articles articles__horizontal">
@@ -125,7 +125,7 @@
                   {
                     ?>
                   <article class="article">
-                      <div class="article__image" style="background-image: url(/media/images/post-image.jpg);">
+                  <div class="article__image" style="background-image: url(/media/images/<?php echo $art['image']?>);">
                       </div>
                       <div class="article__info">
                         <a href="/article.php?id=<?php echo $art['id'] ?>"><?php echo $art['title']?></a>
@@ -150,6 +150,9 @@
                 </div>
               </div>
             </div>
+
+
+
           </section>
             <!-- Секция сайдбара - топ новостей -->
             <section class="content__right col-md-4">
