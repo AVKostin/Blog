@@ -153,9 +153,6 @@
                 </div>
               </div>
             </div>
-
-
-
           </section>
             <!-- Секция сайдбара - топ новостей -->
             <section class="content__right col-md-4">
@@ -168,8 +165,7 @@
         </div>
       </div>
     </div>
-
-<?php include "includes/footer.php";?>
+         <?php include "includes/footer.php";?>
   </div>
 </body>
 </html>
