@@ -1,4 +1,4 @@
-/* http://meyerweb.com/eric/tools/css/reset/ 
+/* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
 */
@@ -71,6 +71,9 @@ h6 {
 
 body {
   font-family: 'Roboto', sans-serif; }
+  img {
+    display:block;
+  }
 
 #header {
   margin-bottom: 25px; }
@@ -152,11 +155,12 @@ body {
   width: 125px;
   height: 125px;
   overflow: hidden;
-  background-color: black;
+  background-color:#0000001a;
   float: left;
   background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center; }
+  background-size: contain;
+  background-position: center;
+ }
 
 .articles .article .article__info {
   margin-left: 125px;
