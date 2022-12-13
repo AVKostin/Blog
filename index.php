@@ -45,20 +45,22 @@
                       </div>
                       <div class="article__info">
                         <a href="/article.php?id=<?php echo $art['id'] ?>"><?php echo $art['title']?></a>
-                        <div class="article__info__meta">
-                          <?php
-                          $art_cat = false;
-                              foreach($categories as $cat)
-                              {
-                                if( $cat['id'] == $art['categorie_id']){
-                                  $art_cat = $cat;
-                                  break;
-                                }
-                              }
-                          ?>
-                          <small>Категория: <a href="/articles.php?categorie=<?php echo $art_cat['id']; ?>"><?php echo $art_cat['title']?></a></small>
-                        </div>
-                        <div class="article__info__preview"><?php echo mb_substr(strip_tags($art['text']),0, 100, 'utf-8'),' ...' ?></div>
+                          <div class="article__info__meta">
+                                <?php
+                                $art_cat = false;
+                                    foreach($categories as $cat)
+                                    {
+                                      if( $cat['id'] == $art['categorie_id']){
+                                        $art_cat = $cat;
+                                        break;
+                                      }
+                                    }
+                                ?>
+                                <small>Категория: <a href="/articles.php?categorie=<?php echo $art_cat['id']; ?>"><?php echo $art_cat['title']?></a>
+                                </small>
+                          </div>
+                              <div class="article__info__preview"><?php echo mb_substr(strip_tags($art['text']),0, 100, 'utf-8'),' ...' ?>
+                              </div>
                       </div>
                   </article><?php } ?>
                 </div>
@@ -160,8 +162,6 @@
     </div>
 
 <?php include "includes/footer.php";?>
-
   </div>
-
 </body>
 </html>
