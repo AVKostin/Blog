@@ -13,33 +13,33 @@
     <?php
       $article = mysqli_query($connection, "SELECT * FROM `articles` WHERE `id` = ". (int) $_GET['id']);
       if( mysqli_num_rows($article) <= 0)
-      {
-        ?>
-          <div id="content">
-            <div class="container">
-              <div class="row">
-                <section class="content__left col-md-8">
-                  <div class="block">
-                    <h3>статья не найдена</h3>
-                    <div class="block__content">
-                    <img src="/media/images/<?php echo $art['image'];?>" style="max-width: 100%">
-                      <div class="full-text">
-                        Запрашиваемая статья не существует!
+        {
+          ?>
+            <div id="content">
+              <div class="container">
+                <div class="row">
+                  <section class="content__left col-md-8">
+                    <div class="block">
+                      <h3>статья не найдена</h3>
+                      <div class="block__content">
+                      <img src="/media/images/<?php echo $art['image'];?>" style="max-width: 100%">
+                        <div class="full-text">
+                          Запрашиваемая статья не существует!
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </section>
-                <!-- Секция сайдбара -->
-                <section class="content__right col-md-4">
-                  <?php include "../includes/sidebar.php";
-                  ?>
-                </section>
+                  </section>
+                  <!-- Секция сайдбара -->
+                  <section class="content__right col-md-4">
+                    <?php include "../includes/sidebar.php";
+                    ?>
+                  </section>
+                </div>
               </div>
             </div>
-          </div>
-        <?php
-      } else
-      {
+          <?php
+        } else
+        {
       $art = mysqli_fetch_assoc($article);
       mysqli_query($connection, "UPDATE `articles` SET `views` = `views` + 1 WHERE `id` =" . (int) $art['id']);
       ?>

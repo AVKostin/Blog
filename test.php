@@ -1,22 +1,23 @@
 <?php
 
 $connection = mysqli_connect('localhost', 'root', '', 'test_db');
-
-  if ($connection == false) {
-    echo 'Не удалось подключиться к БД! <br>';
-    echo mysqli_connect_error();
-    exit();
-      } else {
-        // echo 'Connect to BD Sucsess';
-      }
+  if ($connection == false)
+    {
+      echo 'Не удалось подключиться к БД! <br>';
+      echo mysqli_connect_error();
+      exit();
+    } else
+    {
+      // echo 'Connect to BD Sucsess';
+    }
 
 $result = mysqli_query($connection, "SELECT * FROM `articles_categories` ");
-
 $totalCategories = mysqli_num_rows($result);
-
-  if ($totalCategories == 0) {
-    echo 'Категорий не найдено!';
-  } else {
+  if ($totalCategories == 0)
+    {
+      echo 'Категорий не найдено!';
+    } else
+    {
     ?>
       <ul>
         <?php

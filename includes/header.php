@@ -11,6 +11,9 @@
           <li><a href="/">Главная</a></li>
           <li><a href="/pages/about_me.php">Обо мне</a></li>
           <li><a href="<?php echo $config['github_url']?>"target="_blank">Я в GitHub</a></li>
+          <div class="login_form">
+            <?php include "form.php"; ?>
+          </div>
         </ul>
       </nav>
     </div>
