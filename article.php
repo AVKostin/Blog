@@ -7,21 +7,30 @@
 <head>
   <meta charset="UTF-8">
   <title><?php echo $config['title']; ?></title>
-
   <!-- Bootstrap Grid -->
   <link rel="stylesheet" type="text/css" href="/media/assets/bootstrap-grid-only/css/grid12.css">
-
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
-
   <!-- Custom -->
   <link rel="stylesheet" type="text/css" href="/media/css/style.css">
+  <?php
+session_start();
+ ?>
 </head>
 <body>
 
   <div id="wrapper">
 
   <?php include "includes/header.php"; ?>
+
+
+
+
+
+
+
+
+
 
   <?php
     $article = mysqli_query($connection, "SELECT * FROM `articles` WHERE `id` = ". (int) $_GET['id']);
@@ -80,13 +89,11 @@
                 <div class="articles articles__vertical">
 
                 <?php
-                // echo "SELECT * FROM `comments` WHERE `articles_id` =" . (int) $art['id'] . " ORDER BY `id` DESC";
-                // exit();
-                    $comments = mysqli_query($connection, "SELECT * FROM `comments` WHERE `articles_id` =" . (int) $art['id'] . " ORDER BY `id` DESC");
-                    // Свежие комментарии к конкретной статье
-                    if( mysqli_num_rows($comments) <= 0){
-                        echo 'Нет комментариев!';
-                    }
+                    $comments = mysqli_query($connection, "SELECT * FROM `comments` ORDER BY `id` DESC LIMIT 5");
+                    // Установили лимит "2-х" "Свежих (DESC)" статей на блок
+                    ?>
+
+                  <?php
                       while( $comment = mysqli_fetch_assoc($comments))
                   {
                     ?>
@@ -96,41 +103,54 @@
                       <div class="article__info">
                         <a href="/article.php?id=<?php echo $comment['articles_id'] ?>"><?php echo $comment['author']?></a>
                       <div class="article__info__meta"></div>
-                      <div class="article__info__preview"><?php echo $comment['text'] ?></div>
+                      <div class="article__info__preview"><?php echo mb_substr(strip_tags($comment['text']),0, 50, 'utf-8'),' ...' ?></div>
                       </div>
                   </article>
                     <?php } ?>
+
                 </div>
               </div>
+
+
+
+
+
+
             </div>
             <div id="comment-add-form" class="block">
              <h3>Добавить комментарий</h3>
               <div class="block__content">
-                <form class="form" method="POST" action="/article.php?id=<?php echo $art['id'];?> #comment-add-form">
+                <form class="form" method="POST" action="/article.php?id=<?php echo $art['id']; ?> #comment-add-form">
 
                 <?php
                 //проверяем нажата ли кнопка и далее проверяем заполнены ли все поля формы ввода
 
-              if( isset($_POST['do_post']))
+                if( isset($_POST['do_post']))
               {
+                session_destroy();
                 $errors = array();
 
-                if( $_POST['name'] == '')
+                $name = $_POST["name"];
+                $nickname = $_POST["nickname"];
+                $email =  $_POST["email"];
+                $text = $_POST["text"];
+
+                if( $name == '')
                 {
                   $errors[] = 'Введите имя';
                 }
 
-                if( $_POST['nickname'] == '')
+                if( $nickname == '')
                 {
                   $errors[] = 'Введите Ваш никнем';
                 }
 
-                if( $_POST['email'] == '')
+                if( $email == '')
                 {
                   $errors[] = 'Введите Email';
                 }
 
-                if( $_POST['text'] == '')
+                if( $text == '')
                 {
                   $errors[] = 'Введите текст комментария!';
                 }
@@ -138,16 +158,20 @@
                 if( empty($errors))
                 {
                  // Можем добавить комментарий
-                    mysqli_query($connection, "INSERT INTO `comments` (`author`, `nickname`, `email`, `text`, `pubdate`, `articles_id`) VALUES ('".$_POST['name']."', '".$_POST['nickname']."', '".$_POST['email']."', '".$_POST['text']."', NOW(), '".$art['id']."')");
-                    ob_end_clean();
+                    mysqli_query($connection, "INSERT INTO `comments` (`author`, `nickname`, `email`, `text`, `pubdate`, `articles_id`) VALUES ('".$name."', '".$nickname."', '".$email."', '".$text."', NOW(), '".$art['id']."')");
+                    // ob_end_clean();
                     echo '<span style="color: green; font-weight: bold;margin-bottom:10px; display: block;">Комментарий успешно добавлен!</span>';
+
                 } else
                 {
                   // Выводим ошибку на экран
                   echo '<span style="color: red; font-weight: bold;margin-bottom:10px; display: block;">' . $errors['0']  . '</span>';
                 }
+
               }
                 ?>
+
+
 
                 <div class="form__group">
                     <div class="row">
@@ -155,15 +179,15 @@
                         <input type="text" class="form__control"  name="name" placeholder="Имя" value="<?php echo $_POST['name']; ?>">
                       </div>
                       <div class="col-md-4">
-                        <input type="text" class="form__control"  name="nickname" placeholder="Никнейм" value="<?php echo $_POST['nickname']; ?>">
+                        <input type="text" class="form__control"  name="nickname" placeholder="Никнейм" value="<?php echo $nickname; ?>">
                       </div>
                       <div class="col-md-4">
-                        <input type="text" class="form__control"  name="email" placeholder="Email (не будет показан)" value="<?php echo $_POST['email']; ?>">
+                        <input type="text" class="form__control"  name="email" placeholder="Email (не будет показан)" value="<?php echo $email; ?>">
                       </div>
                     </div>
                   </div>
                   <div class="form__group">
-                    <textarea name="text"  class="form__control" placeholder="Текст комментария ..." value="<?php echo$_POST['text']; ?>"></textarea>
+                    <textarea name="text"  class="form__control" placeholder="Текст комментария ..." ><?php echo $text; ?></textarea>
                   </div>
                   <div class="form__group">
                     <input type="submit" class="form__control" name="do_post" value="Добавить комментарий">
