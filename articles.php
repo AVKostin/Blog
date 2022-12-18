@@ -20,7 +20,7 @@
                 <div class="articles articles__horizontal">
 
                 <?php
-                  $per_page = 3;
+                  $per_page = 6;
                   $page = 1;
 
                   if( isset($_GET['page']))
@@ -46,40 +46,40 @@
                     $articles_exist = true;
 
                   if( mysqli_num_rows($articles) <=0 )
-                  {
-                    echo 'Нет статей';
-                    $articles_exist = false;
-                  }
-                      while( $art = mysqli_fetch_assoc($articles))
-                  {
-                ?>
-
-                    <article class="article">
-                        <div class="article__image" style="background-image: url(/media/images/<?php echo $art['image']?>);">
-                        </div>
-                        <div class="article__info">
-                          <a href="/article.php?id=<?php echo $art['id'] ?>">
-                          <?php echo $art['title']?></a>
-                            <div class="article__info__meta">
-                              <?php
-                              $art_cat = false;
-                                  foreach($categories as $cat)
-                                  {
-                                    if( $cat['id'] == $art['categorie_id']){
-                                      $art_cat = $cat;
-                                      break;
-                                    }
-                                  }
-                              ?>
-                              <small>Категория: <a href="/articles.php?categorie=<?php echo $art_cat['id']; ?>"><?php echo $art_cat['title']?></a></small>
+                      {
+                        echo 'Нет статей';
+                        $articles_exist = false;
+                      }
+                  while( $art = mysqli_fetch_assoc($articles))
+                    {
+                      ?>
+                        <article class="article">
+                            <div class="article__image" style="background-image: url(/media/images/<?php echo $art['image']?>);">
                             </div>
-                                <div class="article__info__preview"><?php echo mb_substr(strip_tags($art['text']),0, 100, 'utf-8'),' ...' ?>
+                            <div class="article__info">
+                              <a href="/article.php?id=<?php echo $art['id'] ?>"><?php echo $art['title']?></a>
+                                <div class="article__info__meta">
+                                <?php
+                                $art_cat = false;
+
+                                    foreach($categories as $cat)
+                                    {
+                                      if( $cat['id'] == $art['categorie_id']){
+                                        $art_cat = $cat;
+                                        break;
+                                      }
+                                    }
+                                ?>
+                                      <small>Категория: <a href="/articles.php?categorie=<?php echo $art_cat['id']; ?>"><?php echo $art_cat['title']?></a>
+                                      </small>
                                 </div>
-                        </div>
-                    </article>
-                    <?php
-                  }
-                ?>
+                                    <div class="article__info__preview"><?php echo mb_substr(strip_tags($art['text']),0, 100, 'utf-8'),' ...' ?>
+                                    </div>
+                            </div>
+                        </article>
+                        <?php
+                    }
+                  ?>
                 </div>
                   <?php
                     if( $articles_exist = true )
@@ -94,6 +94,7 @@
                           echo '<a href="/articles.php?page='.( $page + 1 ).'">   Следующая страница  &raquo;</a>';
                         }
                       echo '</div>';
+
                     }
                   ?>
               </div>
@@ -103,15 +104,13 @@
 
           <!-- Секция сайдбара - топ новостей -->
             <?php include "includes/sidebar.php"; ?>
-
             <!-- Секция сайдбара  - комментарии-->
             <?php include "includes/sidebar_comments.php"; ?>
-
           </section>
         </div>
       </div>
     </div>
-  <?php include "includes/footer.php";?>
-  </div>
+   <?php include "includes/footer.php";?>
+   </div>
 </body>
 </html>
