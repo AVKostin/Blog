@@ -1,7 +1,7 @@
 <?php
 
 $config = array(
-  'title' => 'Тестовый блог на PHP',
+  'title' => 'Тестовый блог на PHP :)',
   'github_url' => 'https://github.com/AVKostin/',
     'db' => array(
         'server' => 'localhost',

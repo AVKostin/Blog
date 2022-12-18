@@ -1,5 +1,4 @@
 <?php
-
 $connection = mysqli_connect(
     $config['db']['server'],
     $config['db']['username'],

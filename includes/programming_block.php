@@ -1,15 +1,13 @@
 <div class="block">
-  <a href="/articles.php?categorie=5">Все записи</a>
+  <a href="/articles.php?categorie=4">Все записи</a>
   <h3>Программирование [Новейшее]</h3>
   <div class="block__content">
     <div class="articles articles__horizontal">
 
     <?php
-        $articles = mysqli_query($connection, "SELECT * FROM `articles` WHERE `categorie_id` = 5 ORDER BY `id` DESC LIMIT 4");
+        $articles = mysqli_query($connection, "SELECT * FROM `articles` WHERE `categorie_id` = 4 ORDER BY `id` DESC LIMIT 4");
         // Установили лимит "2-х" "Свежих (DESC)" статей на блок
-      //   ?>
-      // <?php
-          while( $art = mysqli_fetch_assoc($articles))
+      while( $art = mysqli_fetch_assoc($articles))
       {
         ?>
           <article class="article">

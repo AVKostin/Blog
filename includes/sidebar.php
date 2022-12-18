@@ -1,4 +1,4 @@
-<?php require "includes/config.php"; ?>
+<?php require "config.php"; ?>
 
   <div class="block">
     <h3>Мы_знаем</h3>
