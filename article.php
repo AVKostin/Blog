@@ -9,40 +9,33 @@
   <div id="wrapper">
 
     <?php include "includes/header.php"; ?>
-
-  <?php
-    $article = mysqli_query($connection, "SELECT * FROM `articles` WHERE `id` = ". (int) $_GET['id']);
-    if( mysqli_num_rows($article) <= 0)
-    {
-    ?>
-    <?php
-      $article = mysqli_query($connection, "SELECT * FROM `articles` WHERE `id` = ". (int) $_GET['id']);
-      if( mysqli_num_rows($article) <= 0)
-        {
-          ?>
-
-            <div id="content">
-              <div class="container">
-                <div class="row">
-                  <section class="content__left col-md-8">
-                    <div class="block">
-                      <h3>статья не найдена</h3>
-                      <div class="block__content">
-                      <img src="/media/images/<?php echo $art['image'];?>" style="max-width: 100%">
-                        <div class="full-text">
-                          Запрашиваемая статья не существует!
+        <?php
+          $article = mysqli_query($connection, "SELECT * FROM `articles` WHERE `id` = ". (int) $_GET['id']);
+          if( mysqli_num_rows($article) <= 0)
+            {
+              ?>
+                <div id="content">
+                  <div class="container">
+                    <div class="row">
+                      <section class="content__left col-md-8">
+                        <div class="block">
+                          <h3>статья не найдена</h3>
+                          <div class="block__content">
+                          <img src="/media/images/<?php echo $art['image'];?>" style="max-width: 100%">
+                            <div class="full-text">
+                              Запрашиваемая статья не существует!
+                            </div>
+                          </div>
                         </div>
-                      </div>
+                      </section>
+                      <!-- Секция сайдбара -->
+                      <section class="content__right col-md-4">
+                        <?php include "includes/sidebar.php";
+                        ?>
+                      </section>
                     </div>
-                  </section>
-                  <!-- Секция сайдбара -->
-                  <section class="content__right col-md-4">
-                    <?php include "../includes/sidebar.php";
-                    ?>
-                  </section>
+                  </div>
                 </div>
-              </div>
-            </div>
           <?php
         } else
         {
@@ -52,6 +45,7 @@
       <div id="content">
       <div class="container">
         <div class="row">
+
           <section class="content__left col-md-8">
             <div class="block">
               <a><?php echo $art['views'] ?> просмотров</a>
@@ -62,23 +56,20 @@
                 <?php  echo $art['text']?>
                 </div>
               </div>
+              </div>
+
+              <!-- Комментарии -->
+              <?php include "includes/comments_block.php" ?>
             </div>
 
-            <!-- Комментарии -->
-            <?php include "includes/comments_block.php" ?>
-            </section>
-        </div>
-
-
-        <?php include "includes/comment_add_form.php" ?>
-        </section>
-        <!-- Секция сайдбара -->
-        <section class="content__right col-md-4">
-          <?php include "includes/sidebar.php"; ?>
-          <!-- Секция сайдбара  - комментарии-->
-          <?php include "includes/sidebar_comments.php"; ?>
-        </section>
-
+            <?php include "includes/comment_add_form.php" ?>
+          </section>
+          <!-- Секция сайдбара -->
+          <section class="content__right col-md-4">
+            <?php include "includes/sidebar.php"; ?>
+            <!-- Секция сайдбара  - комментарии-->
+            <?php include "includes/sidebar_comments.php"; ?>
+          </section>
         </div>
       </div>
     </div>
