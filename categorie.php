@@ -14,7 +14,7 @@
       <a href="/articles.php?categorie=<?php echo $art['id'] ?>">Все записи</a>
       <?php
       $articles = mysqli_query($connection, "SELECT * FROM `articles` WHERE `categorie_id` = 4 ORDER BY `id` DESC LIMIT 4");
-      // Установили лимит "2-х" "Свежих (DESC)" статей на блок
+      // Установили лимит "4-х" "Свежих (DESC)" статей на блок в 4-й категогрии
       while ($art = mysqli_fetch_assoc($articles)) {
       ?>
       <?php
