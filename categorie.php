@@ -7,39 +7,51 @@
 
 <body>
   <div id="wrapper">
-
     <?php include "includes/header.php"; ?>
       <div id="content">
         <div class="container">
           <div class="row">
             <section class="content__left col-md-8">
                 <div class="block">
-
-                  <a href="/articles.php?categorie=<?php echo $art['id'] ?>">Все записи</a>
-                  <?php
-                  $articles = mysqli_query($connection, "SELECT * FROM `articles` WHERE `categorie_id` = 4 ORDER BY `id` DESC LIMIT 4");
+                  <a href="/articles.php?categorie=<?php echo $art['id'] ?>">
+                  Все записи</a>
+                  <?php $articles = mysqli_query($connection, "SELECT * FROM `articles` WHERE `categorie_id` = 4 ORDER BY `id` DESC LIMIT 4");
                   // Установили лимит "4-х" "Свежих (DESC)" статей на блок в 4-й категогрии
                   while ($art = mysqli_fetch_assoc($articles))
                     {
                     ?>
-                    <?php
-                      $art_cat = false;
-                      foreach ($categories as $cat) {
-                        if ($cat['id'] == $art['categorie_id']) {
-                          $art_cat = $cat;
-                          break;
+                      <?php
+                        $art_cat = false;
+                        foreach ($categories as $cat) {
+                          if ($cat['id'] == $art['categorie_id']) {
+                            $art_cat = $cat;
+                            break;
+                          }
                         }
-                      }
                       ?>
-                    <h3><?php echo $art_cat['title'] ?></h3>
+                    <h3>
+                        <?php
+                            echo $art_cat['title']
+                        ?>
+                    </h3>
                     <div class="block__content">
                       <div class="articles articles__horizontal">
-
                         <article class="article">
-                          <div class="article__image" style="background-image: url(/media/images/<?php echo $art['image'] ?>);">
+                          <div class="article__image" style="background-image: url(/media/images/
+                            <?php
+                                echo $art['image']
+                            ?>
+                          );">
                           </div>
                           <div class="article__info">
-                            <a href="/article.php?id=<?php echo $art['id'] ?>"><?php echo $art['title'] ?></a>
+                            <a href="/article.php?id=
+                              <?php
+                                  echo $art['id']
+                              ?>">
+                              <?php
+                                  echo $art['title']
+                              ?>
+                            </a>
                             <div class="article__info__meta">
 
                               <small>Категория:
